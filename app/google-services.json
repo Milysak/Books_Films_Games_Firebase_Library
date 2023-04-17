@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1022555936606",
+    "project_id": "books-films-firebase",
+    "storage_bucket": "books-films-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022555936606:android:3cd04af3a46f1357a9e1cf",
+        "android_client_info": {
+          "package_name": "com.example.books_films__firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022555936606-n90qdqfpd0ri846bn6d10mcncotpp0cd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATjlTuYBc_WRpvZqjzQKnAbpvVzvvRmUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022555936606-n90qdqfpd0ri846bn6d10mcncotpp0cd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

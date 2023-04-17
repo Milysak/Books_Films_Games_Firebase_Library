@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Books_Films__Firebase</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_app_menu">AppMenuActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="registerLink"><u>Nie masz jeszcze konta?\n Kliknij i zarejestruj się...!</u></string>
+</resources>
