@@ -19,7 +19,7 @@ Aplikacja biblioteczka, do której można dodawać książki, gry oraz filmy. Lo
 
 ### Logowanie
 <img src="https://github.com/Milysak/Books_Films_Games_Firebase_Library/blob/master/Screenshot_2023-04-25-16-50-35-046_com.example.books_films__firebase.jpg?raw=true" width="256">
-<img src="https://github.com/Milysak/Fotobudka/blob/master/IMG_20230213_195058.jpg?raw=true" width="256">
+<img src="https://github.com/Milysak/Books_Films_Games_Firebase_Library/blob/master/Screenshot_2023-04-25-16-51-01-027_com.example.books_films__firebase.jpg?raw=true" width="256">
 
 ### Biblioteka książek
 <img src="https://github.com/Milysak/Books_Films_Games_Firebase_Library/blob/master/Screenshot_2023-04-25-16-51-25-297_com.example.books_films__firebase.jpg?raw=true" width="256">
