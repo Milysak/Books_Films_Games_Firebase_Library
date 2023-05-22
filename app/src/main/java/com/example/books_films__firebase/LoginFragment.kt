@@ -44,6 +44,8 @@ class LoginFragment : Fragment() {
 
     private lateinit var firebaseAuth: FirebaseAuth
 
+    private lateinit var intent: Intent
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -60,6 +62,8 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+
+        intent = Intent(binding.root.context, MainMenuActivity::class.java)
 
         return binding.root
     }
@@ -90,7 +94,6 @@ class LoginFragment : Fragment() {
 
                         dialog.dismiss()
 
-                        val intent = Intent(view.context, MainMenuActivity::class.java)
                         startActivity(intent)
                     } else {
                         try {

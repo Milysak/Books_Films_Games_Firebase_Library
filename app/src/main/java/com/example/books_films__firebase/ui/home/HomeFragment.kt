@@ -25,6 +25,9 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.json.JSONArray
 import java.util.*
 import kotlin.collections.ArrayList
@@ -47,6 +50,8 @@ class HomeFragment : Fragment() {
     private lateinit var user: FirebaseUser
 
     private lateinit var eventListener: ValueEventListener
+
+    private var filterChecked: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,7 +80,7 @@ class HomeFragment : Fragment() {
 
         lists = ArrayList<Book>()
 
-        val loadingDialog = Dialog(binding.root.context)
+        val loadingDialog = Dialog(view.context)
         loadingDialog.setContentView(R.layout.custom_login_loading_dialog)
         loadingDialog.setCancelable(false)
 
@@ -87,7 +92,7 @@ class HomeFragment : Fragment() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                loadingDialog.show()
+                //loadingDialog.show()
 
                 lists.clear()
                 for (itemSnapshot in snapshot.children) {
@@ -102,7 +107,7 @@ class HomeFragment : Fragment() {
                 }
                 adapter.notifyDataSetChanged()
 
-                loadingDialog.dismiss()
+                //loadingDialog.dismiss()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -118,7 +123,7 @@ class HomeFragment : Fragment() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
-                    filteredList(newText)
+                    filteredList()
                 }
 
                 return true
@@ -127,7 +132,7 @@ class HomeFragment : Fragment() {
 
         adapter.setOnItemClickListener(object : Adapter.onItemClickListener{
             override fun onItemClick(position: Int) {
-                val dialog = CustomDialogFragment(lists[position].title, lists[position].author, lists[position].read)
+                val dialog = CustomDialogFragment(adapter.books[position].title, adapter.books[position].author, adapter.books[position].read)
 
                 dialog.isCancelable = false
 
@@ -141,6 +146,10 @@ class HomeFragment : Fragment() {
                 //dialog.setStyle(STYLE_NO_TITLE, R.style.AppTheme_Dialog_Custom)
 
                 dialog.show(parentFragmentManager, "dialog")
+
+                dialog.onDismiss() {
+                    filteredList()
+                }
             }
         })
 
@@ -165,7 +174,9 @@ class HomeFragment : Fragment() {
 
         binding.settingsButton.setOnClickListener {
             val singleItems = arrayOf("Wszystkie", "Przeczytane", "Nieprzeczytane")
-            val checkedItem = 1
+            val checkedItem = filterChecked
+
+            var item = filterChecked
 
             MaterialAlertDialogBuilder(binding.root.context)
                 .setTitle("Wybierz filtr...")
@@ -174,10 +185,14 @@ class HomeFragment : Fragment() {
                 }
                 .setPositiveButton("POTWIERDŹ") { dialog, which ->
                     // Respond to positive button press
+                    filterChecked = item
+
+                    filteredList()
                 }
                 // Single-choice items (initialized with checked item)
                 .setSingleChoiceItems(singleItems, checkedItem) { dialog, which ->
                     // Respond to item chosen
+                    item = which
                 }
                 .show()
         }
@@ -197,21 +212,43 @@ class HomeFragment : Fragment() {
         val query = binding.searchView.query
 
         if (query.toString().isNotEmpty()) {
-            filteredList(query.toString())
+            filteredList()
         }
 
         adapter.notifyDataSetChanged()
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun filteredList(newText: String) {
+    fun filteredList() {
+        val newText = binding.searchView.query.toString()
+
         val filteredList = kotlin.collections.ArrayList<Book>()
 
         for (book in lists) {
             if (book.title.lowercase().contains(newText.lowercase())) {
-                filteredList.add(book)
+                if (filterChecked == 0) {
+                    filteredList.add(book)
+                } else if (filterChecked == 1) {
+                    if (book.read) {
+                        filteredList.add(book)
+                    }
+                } else if (filterChecked == 2) {
+                    if (!book.read) {
+                        filteredList.add(book)
+                    }
+                }
             } else if(book.author.lowercase().contains(newText.lowercase())) {
-                filteredList.add(book)
+                if (filterChecked == 0) {
+                    filteredList.add(book)
+                } else if (filterChecked == 1) {
+                    if (book.read) {
+                        filteredList.add(book)
+                    }
+                } else if (filterChecked == 2) {
+                    if (!book.read) {
+                        filteredList.add(book)
+                    }
+                }
             }
         }
 

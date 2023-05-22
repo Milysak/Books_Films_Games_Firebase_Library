@@ -26,7 +26,7 @@ class MainMenuActivity : AppCompatActivity() {
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        window.statusBarColor = resources.getColor(R.color.main)
+        window.statusBarColor = resources.getColor(R.color.black)
         window.navigationBarColor = resources.getColor(R.color.black)
 
         binding = ActivityMainMenuBinding.inflate(layoutInflater)
@@ -44,12 +44,20 @@ class MainMenuActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        binding.logOutButton.setOnClickListener {
+            finish()
+        }
+    }
+
+    override fun onBackPressed() {
+        // Do nothing
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        FirebaseAuth.getInstance().signOut()
+//        FirebaseAuth.getInstance().signOut()
 
         Toast.makeText(binding.root.context, "Wylogowano!", Toast.LENGTH_SHORT).show()
     }

@@ -16,6 +16,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.example.books_films__firebase.adapters.Adapter
 import com.example.books_films__firebase.data_classes.Book
+import com.example.books_films__firebase.databinding.FragmentCustomDialog1Binding
+import com.example.books_films__firebase.databinding.FragmentCustomDialog2Binding
 import com.example.books_films__firebase.databinding.FragmentCustomDialogBinding
 import com.example.books_films__firebase.databinding.FragmentHomeBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -38,12 +40,12 @@ private const val ARG_PARAM2 = "param2"
  * Use the [CustomDialogFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CustomDialogFragment(private val title: String, private val author: String, private val read: Boolean) : DialogFragment() {
+class CustomDialog2(private val title: String, private val author: String, private val read: Boolean) : DialogFragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    private var _binding: FragmentCustomDialogBinding? = null
+    private var _binding: FragmentCustomDialog2Binding? = null
 
     private val binding get() = _binding!!
 
@@ -67,7 +69,7 @@ class CustomDialogFragment(private val title: String, private val author: String
         // Inflate the layout for this fragment
         //val view = inflater.inflate(R.layout.fragment_custom_dialog, container, false)
 
-        _binding = FragmentCustomDialogBinding.inflate(inflater, container, false)
+        _binding = FragmentCustomDialog2Binding.inflate(inflater, container, false)
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
@@ -77,10 +79,10 @@ class CustomDialogFragment(private val title: String, private val author: String
         binding.authorField.text = author
 
         if(read) {
-            binding.readField.text = "Przeczytana"
+            binding.readField.text = "Widzany"
             binding.readField.setTextColor(Color.parseColor("#14D61C"))
         } else {
-            binding.readField.text = "Nieprzeczytana"
+            binding.readField.text = "Nie widzany"
             binding.readField.setTextColor(Color.parseColor("#FF9800"))
         }
 
@@ -92,7 +94,7 @@ class CustomDialogFragment(private val title: String, private val author: String
 
         databaseReferenceToUsersBooks = FirebaseDatabase
             .getInstance("https://books-films-firebase-default-rtdb.europe-west1.firebasedatabase.app")
-            .getReference("books")
+            .getReference("films")
             .child(user.uid)
 
         binding.deleteButton.setOnClickListener {

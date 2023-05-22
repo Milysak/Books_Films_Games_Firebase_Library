@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.books_films__firebase.CustomDialogFragment
 import com.example.books_films__firebase.data_classes.Book
+import com.example.books_films__firebase.data_classes.Film
 import com.example.books_films__firebase.databinding.BookRecordBinding
+import com.example.books_films__firebase.databinding.FilmRecordBinding
 
-class Adapter(var books: List<Book>) : RecyclerView.Adapter<Adapter.MyViewHolder>() {
+class Adapter1(var books: List<Film>) : RecyclerView.Adapter<Adapter1.MyViewHolder>() {
 
-    inner class MyViewHolder(binding: BookRecordBinding) : ViewHolder(binding.root) {
+    inner class MyViewHolder(binding: FilmRecordBinding) : ViewHolder(binding.root) {
         val title = binding.titleField
         val author = binding.authorField
         val read = binding.readField
@@ -20,7 +22,7 @@ class Adapter(var books: List<Book>) : RecyclerView.Adapter<Adapter.MyViewHolder
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val bookRecordBinding = BookRecordBinding.inflate(inflater, parent, false)
+        val bookRecordBinding = FilmRecordBinding.inflate(inflater, parent, false)
         return MyViewHolder(bookRecordBinding)
     }
 
@@ -30,10 +32,10 @@ class Adapter(var books: List<Book>) : RecyclerView.Adapter<Adapter.MyViewHolder
 
         val read = books[position].read
         if(read) {
-            holder.read.text = "Przeczytana"
+            holder.read.text = "Widzany"
             holder.read.setTextColor(Color.parseColor("#14D61C"))
         } else {
-            holder.read.text = "Nieprzeczytana"
+            holder.read.text = "Nie widzany"
             holder.read.setTextColor(Color.parseColor("#FF9800"))
         }
 

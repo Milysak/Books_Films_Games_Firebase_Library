@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="zaloguj się lub zarejestruj aby móc przeglądać swoje biblioteczki"
+            android:text="zaloguj się lub zarejestruj aby móc przeglądać swoje biblioteczki z książkami, grami lub filmami..."
             android:textColor="#9913005A"
             android:textSize="20sp"
             android:layout_marginStart="40dp"
