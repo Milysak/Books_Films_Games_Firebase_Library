@@ -7,11 +7,6 @@ Aplikacja biblioteczka, do której można dodawać książki, gry oraz filmy. Lo
 - iirebase Auth,
 - Firebase realtime database.
 
-## TO DO
-- edycja rekordów,
-- rozszerzenie o gry i filmy,
-- filtrowanie -> przeczytane/nieprzeczytane.
-
 ## Zrzuty ekranu
 
 ### Ekran powitalny
