@@ -4,7 +4,7 @@ Aplikacja biblioteczka, do której można dodawać książki, gry oraz filmy. Lo
 ## Technologie
 
 - Android (Kotlin),
-- iirebase Auth,
+- Firebase Auth,
 - Firebase realtime database.
 
 ## Zrzuty ekranu
